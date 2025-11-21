@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YAPIDH</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background: url('bg_ponpes.jpeg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .overlay {
+        background: rgba(0, 0, 0, 0.55);
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        color: white;
+        backdrop-filter: blur(3px);
+    }
+
+    .sidebar {
+        width: 22%;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.15);
+        border-right: 2px solid rgba(255,255,255,0.2);
+        backdrop-filter: blur(4px);
+    }
+
+    .sidebar ul { list-style: none; padding: 0; }
+
+    .sidebar li {
+        margin: 20px 0;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+
+    .sidebar li:hover {
+        background: rgba(255,255,255,0.3);
+        transform: scale(1.04);
+    }
+
+    #logo {
+        width: 140px;
+        margin-bottom: 20px;
+        border-radius: 50%;
+    }
+
+    .content {
+        width: 78%;
+        padding: 40px;
+        text-align: center;
+    }
+
+    .jenjang-btn {
+        padding: 18px 30px;
+        font-size: 20px;
+        margin: 10px;
+        cursor: pointer;
+        border: none;
+        color: white;
+        border-radius: 12px;
+        transition: 0.3s;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .tk { background: #1a237e; }
+    .sd { background: #0d47a1; }
+    .smp { background: #283593; }
+    .sma { background: #01579b; }
+    .stiu { background: #003c8f; }
+
+    .jenjang-btn:hover { transform: translateY(-5px); }
+
+    .logo-jenjang {
+        width: 120px;
+        margin: 20px auto;
+        display: block;
+    }
+
+    .paragraph {
+        text-align: left;
+        max-width: 900px;
+        margin: auto;
+        line-height: 1.7;
+        font-size: 18px;
+    }
+
+    .btn-formulir {
+        background: #00c853;
+        padding: 15px 30px;
+        font-size: 20px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        color: white;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .btn-formulir:hover {
+        background: #009624;
+        transform: translateY(-4px);
+    }
+
+    .author-img {
+        width: 300px;
+        border-radius: 0%;
+        margin: 80px 0;
+        border: 3px solid white;
+    }
+</style>
+</head>
+<body>
+
+<div class="overlay">
+    <div class="sidebar">
+        <img id="logo" src="logo_yapidh.jpeg" alt="Logo YAPIDH">
+        <ul>
+            <li onclick="showPage('visi')">Visi & Misi</li>
+            <li onclick="showPage('sejarah')">Sejarah</li>
+            <li onclick="showPage('jenjang')">Jenjang YAPIDH</li>
+            <li onclick="showPage('ppdb')">Daftar PPDB</li>
+
+            <!-- ✅ MENU AUTHOR DITAMBAHKAN DI SINI -->
+            <li onclick="showPage('author')">Author</li>
+        </ul>
+    </div>
+
+    <div class="content" id="contentBox">
+        <h1>Selamat Datang di YAPIDH</h1>
+        <p>Pilih menu di samping untuk melihat informasi lengkap.</p>
+    </div>
+</div>
+
+<script>
+function showPage(page) {
+    let box = document.getElementById("contentBox");
+
+    if (page === "jenjang") {
+        box.innerHTML = `
+            <h1>Jenjang Pendidikan YAPIDH</h1>
+            <button class='jenjang-btn tk' onclick="loadJenjang('tk')">TKIT</button>
+            <button class='jenjang-btn sd' onclick="loadJenjang('sd')">SDIT</button>
+            <button class='jenjang-btn smp' onclick="loadJenjang('smp')">SMPIT</button>
+            <button class='jenjang-btn sma' onclick="loadJenjang('sma')">SMAIT</button>
+            <button class='jenjang-btn stiu' onclick="loadJenjang('stiu')">STIU</button>
+        `;
+    }
+
+    if (page === "ppdb") {
+        box.innerHTML = `
+            <h1>Pendaftaran Peserta Didik Baru (PPDB)</h1>
+            <p class="paragraph">
+            Pendaftaran PPDB YAPIDH untuk semua jenjang telah dibuka. Silakan menekan tombol di bawah untuk menuju formulir resmi.
+            </p>
+
+            <button class="btn-formulir" onclick="openFormulir()">Buka Formulir PPDB</button>
+        `;
+    }
+
+    if (page === "visi") {
+        box.innerHTML = `
+            <h1>Visi & Misi YAPIDH</h1>
+            <p class="paragraph"><b>Visi:</b><br>
+            Mencetak Generasi Faqih dan Qurani.</p>
+
+            <p class="paragraph"><b>Misi:</b><br>
+            a. Melahirkan generasi yang memiliki aqidah yang kuat, pemahaman Islam yang benar dan berakhlaq Mulia.
+b. Membangun generasi Qur’ani yang tartil dalam membacanya, benar dalam mentadaburinya, baik dalam menjaga hafalan dan semangat dalam mengamalkannya.
+c. Mewujudkan generasi yang cerdas da kreatif, tangguh dan mandiri, peduli dan bertanggung jawab melalui proses pendidikan yang terpadu, seimbang dan berkelanjuatan.</p>`;
+    }
+
+    if (page === "sejarah") {
+        box.innerHTML = `
+            <h1>Sejarah YAPIDH</h1>
+            <p class="paragraph">
+            Yayasan Perguruan Islam Darul Hikmah (Yapidh), berdiri tahun 1983, awalnya mengelola MI, MTs, dan MA dengan kurikulum Departemen Agama. Mulai tahun 1996/1997, Yapidh memadukan kurikulum agama (syar’i) dengan Kurikulum Nasional. Perubahan ini mengubah jenjang menjadi SDIT, SMPIT, SMAIT, serta menambah TKIT.
+
+Kurikulum terpadu memberikan porsi pelajaran agama lebih banyak, termasuk Tafsir, Hadits, Fiqh, Bahasa Arab, Siroh, Nahwu-Sharaf, dan lainnya, ditambah program malam kepesantrenan. Namun pelajaran umum tetap diberikan penuh sesuai kebijakan nasional.
+
+Semua siswa diwajibkan menghafal Alquran, dengan target minimal 4,5 juz untuk SMP–SMA. Banyak siswa berhasil mencapai hafalan 30 juz.
+
+Selain kegiatan akademik dan kepesantrenan, siswa mengikuti berbagai ekstrakurikuler dan sering meraih prestasi, baik dalam tahfidz, pidato, olahraga, maupun akademik. Capaian akademik siswa Yapidh cukup tinggi, dan alumninya tersebar di berbagai perguruan tinggi nasional dan internasional.
+
+Karena padatnya program, SMPIT dan SMAIT menerapkan kebijakan wajib asrama, serta pemisahan fasilitas untuk ikhwan dan akhwat. Yapidh juga terus meningkatkan kualitas SDM, kini memberdayakan lebih dari 170 guru dan karyawan berpendidikan tinggi. Untuk mendukung kegiatan, yayasan membentuk berbagai lembaga pendukung seperti kepegawaian, pendidikan, sarana, dakwah–sosial, dan kepesantrenan.
+
+Pada tahun pelajaran 2003–2004, Yapidh membuka Sekolah Tinggi Ushuluddin (STIU) sebagai pengembangan jenjang pendidikan tinggi.</p>`;
+    }
+
+    /* ✅ HALAMAN AUTHOR DITAMBAHKAN DI SINI */
+    if (page === "author") {
+        box.innerHTML = `
+            <h1>Profil Author</h1>
+
+            <img src="author.jpg" class="author-img" alt="Author">
+
+            <p class="paragraph">
+            <b>Nama:</b> Hasan Abdullah Karim<br>
+            <b>Kelas:</b> 12 Saintek A<br>
+            <b>Hobi:</b> Membaca Buku<br>
+            <b>Klub Bola Favorit:</b> Liverpool<br>
+            <b>Cita-cita:</b> Menjadi orang sukses dunia dan akhirat<br>
+            <b>Instagram:</b> @karimhasanabdullah
+            </p>
+        `;
+    }
+}
+
+function loadJenjang(j) {
+    let box = document.getElementById("contentBox");
+
+    const data = {
+        tk: {
+            title: "TKIT YAPIDH",
+            logo: "logo_tk.jpeg",
+            text: `
+            Visi	Mencetak Generasi Faqih dan Qurani.
+Landasan	Q.S. Al-A’raf: 172 & Q.S. An-Nahl: 78 (Fitrah & Kesaksian Rububiyah).
+Fokus Sasaran	Menguasai Ibadah & Akhlak Terpuji, Bahasa, Kognitif, Fisik Motorik, dan Seni.
+Target Qurani	Kelas A: Qiroati Jilid 2. Kelas B: Qiroati Jilid 4.
+Penilaian	Tanpa nilai angka. Menggunakan observasi/portofolio dengan kategori: BM, MM, BSH, BSB.
+Tata Tertib Utama	Datang pukul 07.00. Wajib berseragam/sepatu. Dilarang bawa mainan, uang, chiki, dan permen.`
+        },
+        sd: {
+            title: "SDIT YAPIDH",
+            logo: "logo_sd.jpeg",
+            text: `
+            Didirikan	Tahun 1999. Memiliki Izin Pendirian sejak 12 Juni 2003.
+Perkembangan	Dimulai dari 9 siswa, kini menempati gedung 3 lantai dengan 899 siswa dan 69 guru.
+Kunci Sukses	Dukungan dan kerjasama yang baik antara Yayasan, Guru, dan Orang Tua.
+Kurikulum	Menggabungkan Kurikulum Nasional (KTSP) dan Kurikulum Bermuatan Agama.
+Program Unggulan	Al-Qur'an (Tahfizh dan Metode Qiroati).
+Target Lulus	Lancar membaca Al-Qur'an dan Hafal 1 Juz.
+Ekstrakurikuler	Memiliki 12 jenis ekskul (wajib & pilihan) untuk mengembangkan life skill, minat, dan bakat.
+Visi Misi	Membentuk Generasi yang Faqih dan Qurani (mencakup kecerdasan akliyah, jasmaniyah, dan religius)`
+        },
+        smp: {
+            title: "SMPIT YAPIDH",
+            logo: "logo_smp.jpeg",
+            text: `
+Berikut **versi ringkasnya**:
+
+SMP IT YAPIDH berdiri sejak 1986 dan pada 1997–1998 menjadi sekolah Islam terpadu dengan kurikulum nasional dan kurikulum syar’i. Sekolah menambah banyak pelajaran agama tanpa mengurangi pelajaran umum serta menerapkan sistem boarding dan full day (dibuka sejak 2005).
+
+Semua siswa wajib menghafal Al-Qur’an: 4,5 juz untuk boarding dan 3 juz untuk fullday, dan banyak siswa melampauinya. Sekolah berprestasi, salah satunya peringkat IX NEM UN Kota Bekasi tahun 2006–2007.
+
+Kegiatan belajar dipisah antara putra–putri, ditambah program ibadah, tahfidz, puasa sunnah, serta berbagai ekstrakurikuler dan program unggulan seperti Mukhoyyam.
+
+Visinya “Mencetak Generasi Faqih dan Qurani” dengan misi membentuk siswa berakhlak mulia, kuat aqidah, unggul dalam Al-Qur’an, cerdas, mandiri, kreatif, dan mampu bersaing. Target utama siswa: hafalan sesuai ketentuan, disiplin, berakhlak Islami, memiliki tsaqafah Islamiyah, dan lulus dengan hasil baik.
+"`
+        },
+        sma: {
+            title: "SMAIT YAPIDH",
+            logo: "logo_sma.jpeg",
+            text: `
+Berikut **versi sangat ringkas**:
+
+---
+
+## **Ringkasan Singkat SMAIT Yapidh**
+
+SMAIT Yapidh berdiri pada 2000/2001 sebagai lanjutan SMPIT, dengan kurikulum terpadu antara kurikulum nasional dan kurikulum pesantren. Jurusan difokuskan pada IPS agar program terpadu berjalan optimal. Sekolah terakreditasi A dan didukung guru-guru berpendidikan tinggi.
+
+Visinya adalah *“Mencetak generasi yang Faqih dan Qurani.”* Misinya membentuk siswa beraqidah kuat, berakhlak mulia, Qurani, cerdas, kreatif, tangguh, dan bertanggung jawab.
+
+Tujuan sekolah mencakup pembentukan akhlak, kemampuan bahasa (Indonesia, Arab, Inggris), kemampuan akademik untuk masuk perguruan tinggi, keterampilan manajerial, dan kesiapan menjadi da’i/da’iah.
+
+Target khusus meliputi hafalan minimal 4,5 juz, kebiasaan ibadah, kemampuan akademik tinggi, penguasaan teknologi, kemampuan meneliti, serta kemampuan bahasa Arab/Inggris.
+
+Kurikulumnya mencakup mata pelajaran nasional dan pesantren, ditambah muatan lokal seperti Tafsir, Hadits, Fiqh, Nahwu-Shorof, Balaghah, dan lain-lain. Program wajib adalah tahfidz, sedangkan ekstrakurikuler meliputi Pramuka, khitobah, English/Arabic Club, olahraga, kepanduan, bela diri, dan program keputrian.
+"`    
+        },
+        stiu: {
+            title: "STIU YAPIDH",
+            logo: "logo_stiu.jpeg",
+            text: `
+Berikut **ringkasan dalam bentuk paragraf tanpa poin**:
+
+---
+
+STIU Darul Hikmah Bekasi memiliki visi menjadi sekolah tinggi yang unggul, berdaya saing, dan responsif dalam mencetak generasi yang faqih dan qur’ani, sejalan dengan visi YAPIDH sejak 1983 yang berkomitmen membentuk generasi berilmu dan berakhlak Qur’ani. Untuk mewujudkan visi tersebut, STIU Darul Hikmah berupaya menghasilkan lulusan yang menguasai ilmu syar’i, khususnya Al-Qur’an dan tafsir, memiliki kemampuan orisinalitas, penerapan, dan pengembangan ilmu, serta berkarakter pemimpin. Selain itu, kampus ini juga menyiapkan lulusan yang mampu berdakwah secara profesional dengan memadukan idealisme dan realitas sosial, memahami lingkungan masyarakat, serta memiliki kemampuan memberikan solusi terhadap berbagai persoalan kekinian.
+`    
+        }
+    };
+
+    const d = data[j];
+
+    box.innerHTML = `
+        <img src="${d.logo}" class="logo-jenjang" alt="${d.title}">
+        <h1>${d.title}</h1>
+        <p class="paragraph">${d.text}</p><br>
+        <button onclick="showPage('jenjang')" class='jenjang-btn ${j}'>Kembali</button>
+    `;
+}
+
+function openFormulir() {
+    window.open("https://ppdbyapidh.com/daftar");
+}
+</script>
+
+</body>
+</html>
